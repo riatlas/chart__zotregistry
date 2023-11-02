@@ -144,6 +144,8 @@ pvc:
   storage: 8Gi
   # Name of the storage class to use if it is different than the default one
   storageClassName: null
+  # keep pvc after uninstall (add helm.sh/resource-policy: "keep" annotation to pvc)
+  keep: true
 
 # List of environment variables to set on the container
 env:
