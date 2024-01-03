@@ -49,6 +49,19 @@ ingress:
 # in configuration, to prevent failures, the scheme must be set to 'HTTPS'.
 httpGet:
   scheme: HTTP
+
+readinessProbe:
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  failureThreshold: 5
+  timeoutSeconds: 15
+  
+livenessProbe:
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  failureThreshold: 5
+  timeoutSeconds: 15
+
 # If mountConfig is true the configMap named $CHART_RELEASE-config is mounted
 # on the pod's '/etc/zot' directory
 mountConfig: false

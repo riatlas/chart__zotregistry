@@ -57,7 +57,11 @@ spec:
           {{- end }}
           {{- end }}
           livenessProbe:
-            initialDelaySeconds: 5
+            {{- with .Values.livenessProbe -}}
+              {{ . | toYaml | nindent 12 }}
+            {{- else }}
+            initialDelaySeconds: 15
+            {{- end }}
             httpGet:
               path: /v2/
               port: 5000
@@ -68,7 +72,11 @@ spec:
                   value: Basic {{ .Values.authHeader }}
               {{- end }}
           readinessProbe:
-            initialDelaySeconds: 5
+            {{- with .Values.readinessProbe -}}
+              {{ . | toYaml | nindent 12 }}
+            {{- else }}
+            initialDelaySeconds: 15
+            {{- end }}
             httpGet:
               path: /v2/
               port: 5000
